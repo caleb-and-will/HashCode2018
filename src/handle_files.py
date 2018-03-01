@@ -18,6 +18,14 @@ class City:
         self.bonus = bonus
         self.step_num = step_num
 
+    def __repr__(self):
+        return ('grid: ' + str(self.grid) +
+                '\nnumber of vehicles: ' + str(self.vehicles_num) +
+                '\nnumber of rides: ' + str(self.ride_num) +
+                '\nper-ride bonus: ' + str(self.bonus) +
+                '\nnumber of steps: ' + str(self.step_num)
+                )
+
 
 class Ride:
     """ Represents a requested ride in the input file.
@@ -36,6 +44,13 @@ class Ride:
         self.earliest_start = earliest_start
         self.latest_finish = latest_finish
 
+    def __repr__(self):
+        return ('start intersection: ' + str(self.start_intersection) +
+                '\nfinish intersection: ' + str(self.finish_intersection) +
+                '\nearliest start: ' + str(self.earliest_start) +
+                '\nlatest finish: ' + str(self.latest_finish)
+                )
+
 
 def createMatrix(r, c):
     road_matrix = []
@@ -47,26 +62,32 @@ def createMatrix(r, c):
 def generate_city(file):
     """ Returns a City object given an input file.
     """
-    with open('file') as f:
+    with open(file) as f:
         line = f.readline()
         values = line.split(' ')
         values[-1] = values[-1][-2]
         c = City((int(values[0]), int(values[1])), int(values[2]),
                  int(values[3]), int(values[4]), int(values[5]))
         return c
-    return
 
 
-def generated_rides_list(file):
-    with open('file') as f:
-        f.next()
-        for line in file:
+def generate_rides_list(file):
+    """ Returns a list of Ride objects.
+    """
+    rides = []
+    with open(file) as f:
+        next(f)
+        for line in f:
             values = line.split(' ')
             values[-1] = values[-1][-2]
             r = Ride(int(values[0]), int(values[1]), int(values[2]),
                      int(values[3]))
-            return r
+            rides.append(r)
+    return rides
 
-    """ Returns a list of Ride objects.
-    """
-    return
+
+print(generate_city('input/a_example.in'))
+
+rides = generate_rides_list('input/a_example.in')
+for ride in rides:
+    print(ride)
