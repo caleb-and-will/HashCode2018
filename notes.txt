@@ -1,0 +1,6 @@
+Things to consider
+------------------
+
+- does bonus outweigh finishing all rides?
+
+- do we need to consider collisions?
