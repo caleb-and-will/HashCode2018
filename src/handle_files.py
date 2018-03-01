@@ -60,8 +60,10 @@ class Ride:
     Properties:
         start_intersection (int, int): (row, column)
         finish_intersection (int, int): (row, column)
-        earliest_start: earliest time ride may start
-        latest_finish: earliest time ride may finish
+        earliest_start (int): earliest time ride may start
+        latest_finish (int): earliest time ride may finish
+        is_taken (boolean): false if the journey has not yet been taken, true
+            otherwise
 
     """
     def __init__(self, start_intersection, finish_intersection,
@@ -72,13 +74,15 @@ class Ride:
         self.latest_finish = latest_finish
         self.distance = get_distance_between_points(start_intersection,
                                                     finish_intersection)
+        self.is_taken = False
 
     def __repr__(self):
         return ('start intersection: ' + str(self.start_intersection) +
                 '\nfinish intersection: ' + str(self.finish_intersection) +
                 '\nearliest start: ' + str(self.earliest_start) +
                 '\nlatest finish: ' + str(self.latest_finish) +
-                '\ndistance: ' + str(self.distance)
+                '\ndistance: ' + str(self.distance) +
+                '\nhas been taken: ' + str(self.is_taken)
                 )
 
 
