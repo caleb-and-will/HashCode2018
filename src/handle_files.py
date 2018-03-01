@@ -36,23 +36,24 @@ class Ride:
         self.earliest_start = earliest_start
         self.latest_finish = latest_finish
 
+
 def createMatrix(r, c):
     road_matrix = []
-    for i in range(0,r):
-        road_matrix.append([0 for i in range(0,c)])
+    for i in range(0, r):
+        road_matrix.append([0 for i in range(0, c)])
     return road_matrix
 
+
 def generate_city(file):
+    """ Returns a City object given an input file.
+    """
     with open('file') as f:
         line = f.readline()
         values = line.split(' ')
         values[-1] = values[-1][-2]
-        City c = new City((int(values[0]), int(values[1])), int(values[2]),
-                int(values[3]), int(values[4]), int(values[5]))
+        c = City((int(values[0]), int(values[1])), int(values[2]),
+                 int(values[3]), int(values[4]), int(values[5]))
         return c
-    
-    """ Returns a City object given an input file.
-    """
     return
 
 
@@ -62,13 +63,10 @@ def generated_rides_list(file):
         for line in file:
             values = line.split(' ')
             values[-1] = values[-1][-2]
-            Ride r = new Ride(int(values[0]), int(values[1]), int(values[2]),
-                    int(values[3])
+            r = Ride(int(values[0]), int(values[1]), int(values[2]),
+                     int(values[3]))
             return r
 
     """ Returns a list of Ride objects.
     """
     return
-
-
-
