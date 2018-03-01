@@ -124,7 +124,7 @@ def get_vehicles(city):
     return vehicles
 
 
-def get_file_info(file):
+def print_file_info(file):
     city = get_city(file)
     print(city)
 
