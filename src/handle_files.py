@@ -43,9 +43,8 @@ class Ride:
         self.finish_intersection = finish_intersection
         self.earliest_start = earliest_start
         self.latest_finish = latest_finish
-        self.distance =\
-            abs(start_intersection[0] - finish_intersection[0]) +\
-            abs(start_intersection[1] - finish_intersection[1])
+        self.distance = get_distance_between_points(start_intersection,
+                                                    finish_intersection)
 
     def __repr__(self):
         return ('start intersection: ' + str(self.start_intersection) +
@@ -54,6 +53,23 @@ class Ride:
                 '\nlatest finish: ' + str(self.latest_finish) +
                 '\ndistance: ' + str(self.distance)
                 )
+
+
+class Vehicle:
+    """ Represents a vehicle in the input file.
+
+    Properties:
+        current_position (int, int): current postion of the vehicle
+    """
+    def __init__(self, current_position):
+        self.current_position = current_position
+
+
+def get_distance_between_points(pos1, pos2):
+    return (
+        abs(pos1[0] - pos2[0]) +
+        abs(pos1[1] - pos2[1])
+    )
 
 
 def create_matrix(r, c):
