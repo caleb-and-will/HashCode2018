@@ -65,6 +65,13 @@ class City:
                 free.append(v)
         return free
 
+    def get_busy_vehicles(self, current_step):
+        busy = []
+        for v in self.vehicles:
+            if (v.step_busy_until > current_step):
+                busy.append(v)
+        return busy
+
     def get_waiting_rides(self):
         waiting = []
         for r in self.rides:
