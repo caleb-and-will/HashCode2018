@@ -43,12 +43,16 @@ class Ride:
         self.finish_intersection = finish_intersection
         self.earliest_start = earliest_start
         self.latest_finish = latest_finish
+        self.distance =\
+            abs(start_intersection[0] - finish_intersection[0]) +\
+            abs(start_intersection[1] - finish_intersection[1])
 
     def __repr__(self):
         return ('start intersection: ' + str(self.start_intersection) +
                 '\nfinish intersection: ' + str(self.finish_intersection) +
                 '\nearliest start: ' + str(self.earliest_start) +
-                '\nlatest finish: ' + str(self.latest_finish)
+                '\nlatest finish: ' + str(self.latest_finish) +
+                '\ndistance: ' + str(self.distance)
                 )
 
 
@@ -80,14 +84,16 @@ def generate_rides_list(file):
         for line in f:
             values = line.split(' ')
             values[-1] = values[-1][-2]
-            r = Ride(int(values[0]), int(values[1]), int(values[2]),
-                     int(values[3]))
+            r = Ride((int(values[0]), int(values[1])), (int(values[2]),
+                     int(values[3])), int(values[4]), int(values[5]))
             rides.append(r)
     return rides
 
 
 print(generate_city('input/a_example.in'))
 
+print('\n---\n')
+
 rides = generate_rides_list('input/a_example.in')
 for ride in rides:
-    print(ride)
+    print(ride, '\n')
