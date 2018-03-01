@@ -56,7 +56,7 @@ class Ride:
                 )
 
 
-def createMatrix(r, c):
+def create_matrix(r, c):
     road_matrix = []
     for i in range(0, r):
         road_matrix.append([0 for i in range(0, c)])
