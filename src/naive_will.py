@@ -12,7 +12,7 @@ OUTPUT = None
 def order_waiting_rides(waiting_rides):
     """ Sorts waiting rides, in-place, by their earliest start time.
     """
-    waiting_rides.sort(key=lambda r: r.earliest_start)
+    waiting_rides.sort(key=lambda r: r.latest_finish)
 
 
 def assign_vehicle_to_ride(ride, free_vehicles):
