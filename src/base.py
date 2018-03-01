@@ -18,8 +18,7 @@ class City:
     def __init__(self, file):
         with open(file) as f:
             line = f.readline()
-            values = line.split(' ')
-            values[-1] = values[-1][-2]
+            values = line.strip('\n').split(' ')
         self.grid = (int(values[0]), int(values[1]))
         self.ride_num = int(values[3])
         self.bonus = int(values[4])
@@ -59,12 +58,12 @@ class City:
             vehicles.append(Vehicle(i))
         return vehicles
 
-    def get_active_vehicles(self, current_step):
-        active = []
+    def get_free_vehicles(self, current_step):
+        free = []
         for v in self.vehicles:
             if (v.step_busy_until <= current_step):
-                active.append(v)
-        return active
+                free.append(v)
+        return free
 
     def get_waiting_rides(self):
         waiting = []
