@@ -1,6 +1,8 @@
 import sys
 
 
+# Classes
+
 class City:
     """ Represents a city in an input file.
 
@@ -65,6 +67,8 @@ class Vehicle:
         self.current_position = current_position
 
 
+# Functions
+
 def get_distance_between_points(pos1, pos2):
     return (
         abs(pos1[0] - pos2[0]) +
@@ -106,10 +110,11 @@ def generate_rides_list(file):
     return rides
 
 
-print(generate_city('input/a_example.in'))
+def test_functions():
+    print(generate_city('input/a_example.in'))
 
-print('\n---\n')
+    print('\n---\n')
 
-rides = generate_rides_list('input/a_example.in')
-for ride in rides:
-    print(ride, '\n')
+    rides = generate_rides_list('input/a_example.in')
+    for ride in rides:
+        print(ride, '\n')
