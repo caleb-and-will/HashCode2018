@@ -40,18 +40,24 @@ class City:
         rides = []
         with open(file) as f:
             next(f)
+            cur_ride = 0
             for line in f:
                 values = line.split(' ')
                 values[-1] = values[-1][-2]
-                r = Ride((int(values[0]), int(values[1])), (int(values[2]),
-                         int(values[3])), int(values[4]), int(values[5]))
+                r = Ride(cur_ride,
+                         (int(values[0]), int(values[1])),
+                         (int(values[2]), int(values[3])),
+                         int(values[4]),
+                         int(values[5])
+                         )
                 rides.append(r)
+                cur_ride += 1
         return rides
 
     def get_vehicles(self, n):
         vehicles = []
         for i in range(0, n):
-            vehicles.append(Vehicle((0, 0)))
+            vehicles.append(Vehicle(i))
         return vehicles
 
     def get_active_vehicles(self, current_step):
@@ -81,8 +87,9 @@ class Ride:
             otherwise
 
     """
-    def __init__(self, start_intersection, finish_intersection,
+    def __init__(self, r_id, start_intersection, finish_intersection,
                  earliest_start, latest_finish):
+        self.id = r_id
         self.start_intersection = start_intersection
         self.finish_intersection = finish_intersection
         self.earliest_start = earliest_start
@@ -92,7 +99,8 @@ class Ride:
         self.is_taken = False
 
     def __repr__(self):
-        return ('start intersection: ' + str(self.start_intersection) +
+        return ('id: ' + str(self.id) +
+                '\nstart intersection: ' + str(self.start_intersection) +
                 '\nfinish intersection: ' + str(self.finish_intersection) +
                 '\nearliest start: ' + str(self.earliest_start) +
                 '\nlatest finish: ' + str(self.latest_finish) +
@@ -108,13 +116,14 @@ class Vehicle:
         current_position (int, int): current postion of the vehicle
         ride (Ride): ride object assigned to this vehicle
     """
-    def __init__(self, current_position):
-        self.current_position = current_position
+    def __init__(self, v_id):
+        self.id = v_id
+        self.current_position = (0, 0)
         self.ride = None
         self.step_busy_until = 0
 
     def __repr__(self):
-        return ('[' + str(self.current_position) +
+        return ('[' + str(self.id) + ', ' + str(self.current_position) +
                 ', ' + str(self.ride) + ']'
                 )
 
