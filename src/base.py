@@ -30,7 +30,6 @@ class City:
     def __repr__(self):
         return ('grid: ' + str(self.grid) +
                 '\nnumber of vehicles: ' + str(len(self.vehicles)) +
-                '\nvehicles: ' + str(self.vehicles) +
                 '\nnumber of rides: ' + str(self.ride_num) +
                 '\nper-ride bonus: ' + str(self.bonus) +
                 '\nnumber of steps: ' + str(self.step_num)
