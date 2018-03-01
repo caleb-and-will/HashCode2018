@@ -54,6 +54,20 @@ class City:
             vehicles.append(Vehicle((0, 0)))
         return vehicles
 
+    def get_active_vehicles(self, current_step):
+        active = []
+        for v in self.vehicles:
+            if (v.step_busy_until <= current_step):
+                active.append(v)
+        return active
+
+    def get_waiting_rides(self):
+        waiting = []
+        for r in self.rides:
+            if (not r.is_taken):
+                waiting.append(r)
+        return waiting
+
 
 class Ride:
     """ Represents a requested ride in the input file.
