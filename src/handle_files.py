@@ -62,9 +62,16 @@ class Vehicle:
 
     Properties:
         current_position (int, int): current postion of the vehicle
+        ride (Ride): ride object assigned to this vehicle
     """
     def __init__(self, current_position):
         self.current_position = current_position
+        self.ride = None
+
+    def __repr__(self):
+        return ('current position: ' + str(self.current_position) +
+                '\nride: ' + str(self.ride)
+                )
 
 
 # Functions
@@ -83,7 +90,7 @@ def create_matrix(r, c):
     return road_matrix
 
 
-def generate_city(file):
+def get_city(file):
     """ Returns a City object given an input file.
     """
     with open(file) as f:
@@ -95,7 +102,7 @@ def generate_city(file):
         return c
 
 
-def generate_rides_list(file):
+def get_rides(file):
     """ Returns a list of Ride objects.
     """
     rides = []
@@ -110,11 +117,25 @@ def generate_rides_list(file):
     return rides
 
 
-def test_functions():
-    print(generate_city('input/a_example.in'))
+def get_vehicles(city):
+    vehicles = []
+    for i in range(0, city.vehicles_num):
+        vehicles.append(Vehicle((0, 0)))
+    return vehicles
+
+
+def get_file_info(file):
+    city = get_city(file)
+    print(city)
 
     print('\n---\n')
 
-    rides = generate_rides_list('input/a_example.in')
-    for ride in rides:
-        print(ride, '\n')
+    vehicles = get_vehicles(city)
+    for v in vehicles:
+        print(v, '\n')
+
+    print('\n---\n')
+
+    rides = get_rides(file)
+    for r in rides:
+        print(r, '\n')
